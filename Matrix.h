@@ -36,7 +36,7 @@ namespace mathz {
 				fprintf(stderr, "Passed in vector of wrong size! Must be  4x4.");
 			else
 			{
-				for (int row = 0; row < 4; row++)
+				for (int row = 0; row < 4; ++row)
 					for (int column = 0; column < 4; column++)
 						mat[row][column] = v[row][column];
 			}
@@ -59,8 +59,8 @@ namespace mathz {
 		{
 			Mat4 result;
 
-			for (int i = 0; i < 4; i++)
-				for (int j = 0; j < 4; j++)
+			for (int i = 0; i < 4; ++i)
+				for (int j = 0; j < 4; ++j)
 					result.mat[i][j] = mat[j][i];
 
 			return result;
@@ -75,7 +75,7 @@ namespace mathz {
             Mat4 orig(*this);
 
 			// loop through matrix to set all elements to 0 except for the pivot points
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; ++i)
 			{
 				// pivot points are the elements on the diagonal
 				float pivot = orig.mat[i][i];
@@ -87,7 +87,7 @@ namespace mathz {
 					int bestOption = i;
 
 					// check all elements in the column for the largest absolute value
-					for (int j = 0; j < 4; j++)
+					for (int j = 0; j < 4; ++j)
 					{
 						if (std::abs(orig.mat[j][i]) > std::abs(orig.mat[bestOption][i]))
 						{
@@ -104,7 +104,7 @@ namespace mathz {
 					{
 						float temp;
 
-						for (int j = 0; j < 4; j++)
+						for (int j = 0; j < 4; ++j)
 						{
 							temp = orig.mat[i][j];
 							orig.mat[i][j] = orig.mat[bestOption][j];
@@ -120,7 +120,7 @@ namespace mathz {
 				// set rest of elements in column to 0
 				// this is done by calculating a coefficient q based on the element that we want to set to 0 over the pivot
 				// then subtracting the desired row by q * the current row
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 4; ++j)
 				{
 					if (i != j)
 					{
@@ -128,7 +128,7 @@ namespace mathz {
 
 						if (q != 0)
 						{
-							for (int k = 0; k < 4; k++)
+							for (int k = 0; k < 4; ++k)
 							{
 								orig.mat[j][k] -= q * orig.mat[i][k];
 								inv.mat[j][k] -= q * inv.mat[i][k];
@@ -140,7 +140,7 @@ namespace mathz {
 			}
 
 			// now set all pivots to one to get the identity matrix
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; ++i)
 			{
 
 				if (orig.mat[i][i] != 1)
@@ -160,8 +160,8 @@ namespace mathz {
 		{
 			Mat4 res;
 
-			for (int row = 0; row < 4; row++)
-				for (int column = 0; column < 4; column++)
+			for (int row = 0; row < 4; ++row)
+				for (int column = 0; column < 4; ++column)
 					res.mat[row][column] = mat[row][column] + obj.mat[row][column];
 
 			return res;
@@ -172,8 +172,8 @@ namespace mathz {
 		{
 			Mat4 res;
 
-			for (int row = 0; row < 4; row++)
-				for (int column = 0; column < 4; column++)
+			for (int row = 0; row < 4; ++row)
+				for (int column = 0; column < 4; ++column)
 					res.mat[row][column] = mat[row][column] - obj.mat[row][column];
 
 			return res;
@@ -185,9 +185,9 @@ namespace mathz {
 		inline Mat4 operator* (const Mat4& other_mat) const
 		{
 			Mat4 res_mat;
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; ++i)
 			{
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 4; ++j)
 				{
 					res_mat(i, j) =
 						mat[i][0] * other_mat.mat[0][j] +
@@ -225,9 +225,9 @@ namespace mathz {
 		inline Mat4 operator* (float scalar) const
 		{
 			Mat4 res_mat;
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 4; ++i)
 			{
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 4; ++j)
 				{
 					res_mat(i, j) = mat[i][j] * scalar;
 				}
