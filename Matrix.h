@@ -16,7 +16,7 @@ namespace mathz {
 	class Mat4
 	{
 	public:
-		Mat4() { }
+		Mat4() = default;
 
 		Mat4(float m00, float m01, float m02, float m03,
 			float m10, float m11, float m12, float m13,
@@ -241,6 +241,11 @@ namespace mathz {
 			Mat4 temp = *this * other_mat;
 
 			*this = temp;
+		}
+
+		inline bool operator== (const Mat4& other_mat)
+		{
+			return (mat == other_mat.mat);
 		}
 
 		void clear()
