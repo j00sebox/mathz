@@ -27,7 +27,7 @@ TEST_CASE("Matrix Inverse", "[matrix 4x4]")
 	{
 		for (unsigned int j = 0; j < 4; ++j)
 		{
-			REQUIRE(result(i, j) == Approx(expected_inverse(i, j)).margin(0.0001).epsilon(1e-10));
+			REQUIRE(result[i][j] == Approx(expected_inverse[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
 }
@@ -54,7 +54,7 @@ TEST_CASE("Matrix Transpose", "[matrix 4x4]")
 	{
 		for (unsigned int j = 0; j < 4; ++j)
 		{
-			REQUIRE(result(i, j) == Approx(expected_transpose(i, j)).margin(0.0001).epsilon(1e-10));
+			REQUIRE(result[i][j] == Approx(expected_transpose[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
 }
@@ -88,7 +88,7 @@ TEST_CASE("Matrix Addition", "[matrix 4x4]")
 	{
 		for (unsigned int j = 0; j < 4; ++j)
 		{
-			REQUIRE(result(i, j) == Approx(expected_addition(i, j)).margin(0.0001).epsilon(1e-10));
+			REQUIRE(result[i][j] == Approx(expected_addition[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
 }
@@ -122,7 +122,7 @@ TEST_CASE("Matrix Subtraction", "[matrix 4x4]")
 	{
 		for (unsigned int j = 0; j < 4; ++j)
 		{
-			REQUIRE(result(i, j) == Approx(expected_subtraction(i, j)).margin(0.0001).epsilon(1e-10));
+			REQUIRE(result[i][j] == Approx(expected_subtraction[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
 }
@@ -156,7 +156,7 @@ TEST_CASE("Matrix-Matrix Multiplication", "[matrix 4x4]")
 	{
 		for (unsigned int j = 0; j < 4; ++j)
 		{
-			REQUIRE(result(i, j) == Approx(expected_multiplication(i, j)).margin(0.0001).epsilon(1e-10));
+			REQUIRE(result[i][j] == Approx(expected_multiplication[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
 }
@@ -213,7 +213,7 @@ TEST_CASE("Matrix-Scalar Multiplication", "[matrix 4x4]")
 	{
 		for (unsigned int j = 0; j < 4; ++j)
 		{
-			REQUIRE(result(i, j) == Approx(expected_multiplication(i, j)).margin(0.0001).epsilon(1e-10));
+			REQUIRE(result[i][j] == Approx(expected_multiplication[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
 }

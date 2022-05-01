@@ -6,6 +6,21 @@
 
 #include "Vector.h"
 
+struct rows
+{
+	float row[4];
+
+	inline float& operator[] (int i)
+	{
+		return row[i];
+	}
+
+	inline const float& operator[] (int i) const
+	{
+		return row[i];
+	}
+};
+
 namespace mathz {
 
 	/**********************************************
@@ -179,8 +194,7 @@ namespace mathz {
 			return res;
 		};
 
-		// allows value to be accessed easier
-		inline float& operator () (int i, int j) { return mat[i][j]; };
+		
 
 		inline Mat4 operator* (const Mat4& other_mat) const
 		{
@@ -189,7 +203,7 @@ namespace mathz {
 			{
 				for (int j = 0; j < 4; ++j)
 				{
-					res_mat(i, j) =
+					res_mat[i][j] =
 						mat[i][0] * other_mat.mat[0][j] +
 						mat[i][1] * other_mat.mat[1][j] +
 						mat[i][2] * other_mat.mat[2][j] +
@@ -229,7 +243,7 @@ namespace mathz {
 			{
 				for (int j = 0; j < 4; ++j)
 				{
-					res_mat(i, j) = mat[i][j] * scalar;
+					res_mat[i][j] = mat[i][j] * scalar;
 				}
 			}
 
@@ -248,6 +262,16 @@ namespace mathz {
 			return (mat == other_mat.mat);
 		}
 
+		inline rows& operator[] (int i)
+		{
+			return mat[i];
+		}
+
+		inline const rows& operator[] (int i) const
+		{
+			return mat[i];
+		}
+
 		void clear()
 		{
 			set(1, 0, 0, 0,
@@ -258,7 +282,7 @@ namespace mathz {
 		}
 
 		// default matrix is identity
-		float mat[4][4] = { {1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1} };
+		rows mat[4] = { {1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1} };
 	};
 
 }
