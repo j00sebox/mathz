@@ -1,9 +1,44 @@
 #include "../Matrix.h"
+#include "../Misc.h"
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
 
 using namespace Catch;
+
+TEST_CASE("Radians to Degrees", "[misc]")
+{
+	unsigned int num_tests = 5;
+	std::pair<float, float> tests[5] = {
+		{ 180.f, 3.1415f },
+		{ 90.f, 1.5708f },
+		{ 270.f, 4.7124f },
+		{ 1.f, 0.01745f },
+		{ 0.f, 0.f }
+	};
+
+	for (unsigned int i = 0; i < 5; ++i)
+	{
+		REQUIRE(tests[i].second == Approx( mathz::radians(tests[i].first) ).margin(0.0001).epsilon(1e-10));
+	}
+}
+
+TEST_CASE("Degrees to Radians", "[misc]")
+{
+	unsigned int num_tests = 5;
+	std::pair<float, float> tests[5] = {
+		{ 180.f, 3.1415f },
+		{ 90.f, 1.5708f },
+		{ 270.f, 4.7124f },
+		{ 1.f, 0.01745f },
+		{ 0.f, 0.f }
+	};
+
+	for (unsigned int i = 0; i < 5; ++i)
+	{
+		REQUIRE(tests[i].first == Approx(mathz::degrees(tests[i].second)).margin(0.01).epsilon(1e-10));
+	}
+}
 
 TEST_CASE("Matrix Inverse", "[matrix 4x4]")
 {
