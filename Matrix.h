@@ -194,8 +194,6 @@ namespace mathz {
 			return res;
 		};
 
-		
-
 		inline Mat4 operator* (const Mat4& other_mat) const
 		{
 			Mat4 res_mat;
@@ -217,7 +215,7 @@ namespace mathz {
 		inline Vec3 operator* (const Vec3& vec) const
 		{
 			float w;
-
+			 
 			Vec3 new_vec;
 
 			new_vec.x = vec.x * mat[0][0] + vec.y * mat[1][0] + vec.z * mat[2][0] + mat[3][0];
@@ -255,11 +253,6 @@ namespace mathz {
 			Mat4 temp = *this * other_mat;
 
 			*this = temp;
-		}
-
-		inline bool operator== (const Mat4& other_mat)
-		{
-			return (mat == other_mat.mat);
 		}
 
 		inline rows& operator[] (int i)
