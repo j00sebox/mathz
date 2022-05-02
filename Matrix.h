@@ -70,7 +70,7 @@ namespace mathz {
 		};
 
 		// swap rows are columns of the matrix
-		Mat4 transpose()
+		constexpr Mat4 transpose()
 		{
 			Mat4 result;
 
@@ -82,7 +82,7 @@ namespace mathz {
 		}
 
 		// computes the inverse of the matrix using the Gauss-Jordan elimination method
-		inline Mat4 inverse() const
+		constexpr Mat4 inverse() const
 		{
 			// an identity matrix is needed to keep track of all the operations done on the original matrix
 			// this ends up becoming the inverse
@@ -117,7 +117,7 @@ namespace mathz {
 					}
 					else // otherwise swap the current row the best option row
 					{
-						float temp;
+						float temp = 0.f;
 
 						for (int j = 0; j < 4; ++j)
 						{
@@ -171,7 +171,7 @@ namespace mathz {
 		}
 
 		// add two matrices together
-		Mat4 operator + (Mat4 const& obj)
+		constexpr Mat4 operator + (Mat4 const& obj)
 		{
 			Mat4 res;
 
@@ -183,7 +183,7 @@ namespace mathz {
 		}
 
 		// subtract matrix from another
-		Mat4 operator - (Mat4 const& obj)
+		constexpr Mat4 operator - (Mat4 const& obj)
 		{
 			Mat4 res;
 
@@ -194,7 +194,7 @@ namespace mathz {
 			return res;
 		};
 
-		inline Mat4 operator* (const Mat4& other_mat) const
+		constexpr Mat4 operator* (const Mat4& other_mat) const
 		{
 			Mat4 res_mat;
 			for (int i = 0; i < 4; ++i)
@@ -214,7 +214,7 @@ namespace mathz {
 
 		inline Vec3 operator* (const Vec3& vec) const
 		{
-			float w;
+			float w = 0.f;
 			 
 			Vec3 new_vec;
 
@@ -234,7 +234,7 @@ namespace mathz {
 			return new_vec;
 		}
 
-		inline Mat4 operator* (float scalar) const
+		constexpr Mat4 operator* (float scalar) const
 		{
 			Mat4 res_mat;
 			for (int i = 0; i < 4; ++i)
@@ -248,7 +248,7 @@ namespace mathz {
 			return res_mat;
 		}
 
-		inline void operator*= (const Mat4& other_mat)
+		constexpr void operator*= (const Mat4& other_mat)
 		{
 			Mat4 temp = *this * other_mat;
 
