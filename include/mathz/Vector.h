@@ -154,6 +154,14 @@ namespace mathz {
 			this->w = w;
 		}
 
+		Vec4(float x, float y, float z, float w)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+			this->w = w;
+		}
+
 		inline void normalize()
 		{
 			float divisor = sqrtf(powf(x, 2.f) + powf(y, 2.f) + powf(z, 2.f) + powf(w, 2.f));
@@ -213,6 +221,15 @@ namespace mathz {
 			r.w = w * a;
 
 			return r;
+		}
+
+		inline bool operator== (const Vec4& other) const
+		{
+			return ((x == other.x) &&
+				(y == other.y) &&
+				(z == other.z) &&
+				(w == other.w)
+			);
 		}
 
 		float x, y, z, w;

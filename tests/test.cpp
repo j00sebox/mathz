@@ -1,5 +1,6 @@
 #include "../include/mathz/Matrix.h"
 #include "../include/mathz/Misc.h"
+#include "../include/mathz/Vector.h"
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
@@ -25,8 +26,8 @@ TEST_CASE("Radians to Degrees", "[misc]")
 
 TEST_CASE("Degrees to Radians", "[misc]")
 {
-	unsigned int num_tests = 5;
-	std::pair<float, float> tests[5] = {
+	const unsigned int num_tests = 5;
+	std::pair<float, float> tests[num_tests] = {
 		{ 180.f, 3.1415f },
 		{ 90.f, 1.5708f },
 		{ 270.f, 4.7124f },
@@ -34,9 +35,27 @@ TEST_CASE("Degrees to Radians", "[misc]")
 		{ 0.f, 0.f }
 	};
 
-	for (unsigned int i = 0; i < 5; ++i)
+	for (unsigned int i = 0; i < num_tests; ++i)
 	{
 		REQUIRE(tests[i].first == Approx(mathz::degrees(tests[i].second)).margin(0.01).epsilon(1e-10));
+	}
+}
+
+TEST_CASE("Normalize", "[vector 4]")
+{
+	const unsigned int num_tests = 2;
+	std::pair<mathz::Vec4, mathz::Vec4> tests[num_tests] = {
+		{ mathz::Vec4(-168.027, 449.713, 88.144, -489.202), mathz::Vec4(-0.243, 0.651, 0.127, -0.708) },
+		{ mathz::Vec4(-218.636, 975.642, -549.982, -814.964), mathz::Vec4(-0.156, 0.696, -0.392, -0.581) }
+	};
+
+	for (unsigned int i = 0; i < num_tests; ++i)
+	{
+		tests[i].first.normalize();
+		REQUIRE(tests[i].first.x == Approx(tests[i].second.x).margin(0.001).epsilon(1e-10));
+		REQUIRE(tests[i].first.y == Approx(tests[i].second.y).margin(0.001).epsilon(1e-10));
+		REQUIRE(tests[i].first.z == Approx(tests[i].second.z).margin(0.001).epsilon(1e-10));
+		REQUIRE(tests[i].first.w == Approx(tests[i].second.w).margin(0.001).epsilon(1e-10));
 	}
 }
 
