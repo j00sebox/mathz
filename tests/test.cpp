@@ -1,5 +1,5 @@
-#include "../Matrix.h"
-#include "../Misc.h"
+#include "../include/mathz/Matrix.h"
+#include "../include/mathz/Misc.h"
 
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
