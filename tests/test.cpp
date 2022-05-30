@@ -3,6 +3,7 @@
 #include "../include/mathz/Vector.h"
 
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 #include <catch2/catch_approx.hpp>
 
 using namespace Catch;
@@ -86,6 +87,11 @@ TEST_CASE("Matrix Inverse", "[matrix 4x4]")
 			REQUIRE(result[i][j] == Approx(expected_inverse[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
+
+    BENCHMARK("Matrix Inverse Benchmark")
+    {
+        return orig.inverse();
+    };
 }
 
 TEST_CASE("Matrix Transpose", "[matrix 4x4]")
@@ -113,6 +119,11 @@ TEST_CASE("Matrix Transpose", "[matrix 4x4]")
 			REQUIRE(result[i][j] == Approx(expected_transpose[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
+
+    BENCHMARK("Matrix Transpose Benchmark")
+    {
+        return orig.transpose();
+    };
 }
 
 TEST_CASE("Matrix Addition", "[matrix 4x4]")
@@ -147,6 +158,11 @@ TEST_CASE("Matrix Addition", "[matrix 4x4]")
 			REQUIRE(result[i][j] == Approx(expected_addition[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
+
+    BENCHMARK("Matrix Addition Benchmark")
+    {
+        return a + b;
+    };
 }
 
 TEST_CASE("Matrix Subtraction", "[matrix 4x4]")
@@ -181,6 +197,11 @@ TEST_CASE("Matrix Subtraction", "[matrix 4x4]")
 			REQUIRE(result[i][j] == Approx(expected_subtraction[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
+
+    BENCHMARK("Matrix Subtraction Benchmark")
+    {
+        return a - b;
+    };
 }
 
 TEST_CASE("Matrix-Matrix Multiplication", "[matrix 4x4]")
@@ -215,6 +236,11 @@ TEST_CASE("Matrix-Matrix Multiplication", "[matrix 4x4]")
 			REQUIRE(result[i][j] == Approx(expected_multiplication[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
+
+    BENCHMARK("Matrix Multiply Benchmark")
+    {
+        return a * b;
+    };
 }
 
 TEST_CASE("Matrix-Vector Multiplication", "[matrix 4x4]")
@@ -243,6 +269,11 @@ TEST_CASE("Matrix-Vector Multiplication", "[matrix 4x4]")
 	REQUIRE(result.x == expected_multiplication.x);
 	REQUIRE(result.y == expected_multiplication.y);
 	REQUIRE(result.z == expected_multiplication.z);
+
+    BENCHMARK("Matrix-Vector Benchmark")
+    {
+        return a * b;
+    };
 }
 
 TEST_CASE("Matrix-Scalar Multiplication", "[matrix 4x4]")
@@ -272,4 +303,9 @@ TEST_CASE("Matrix-Scalar Multiplication", "[matrix 4x4]")
 			REQUIRE(result[i][j] == Approx(expected_multiplication[i][j]).margin(0.0001).epsilon(1e-10));
 		}
 	}
+
+    BENCHMARK("Matrix-Scalar Benchmark")
+    {
+        return a * scalar;
+    };
 }
